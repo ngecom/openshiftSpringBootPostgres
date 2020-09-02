@@ -29,7 +29,6 @@ Select PostgreSQL and then Instantiate Template. Enter the database credentials 
 # Verify status of POD and Environemnt details
 Now the database pod will be created and you can see the pod in Topology. Click on the pod and you can see the status of the pod. Click on the pod name in the Resources tab to see the pod details.
 If you want to see the pod credentials then go to Terminal and enter the below command.
-<img src="https://github.com/ngecom/openshiftSpringBootPostgres/blob/master/ConfigMap.png">
 <img src="https://github.com/ngecom/openshiftSpringBootPostgres/blob/master/VerifyEnvVariables.png">
   sh-4.2$ env | grep POST
       POSTGRESQL_PORT_5432_TCP_ADDR=172.30.102.169
@@ -47,22 +46,25 @@ If you want to see the pod credentials then go to Terminal and enter the below c
       POSTGRESQL_PORT_5432_TCP_PROTO=tcp
 # Execute the Script in Database      
   <href src="https://github.com/ngecom/openshiftSpringBootPostgres/blob/master/sql/createTable.sql">
+ 
 #  Create Secret in workload section
+
 Administrator tab and go to Config Map section. Click on Create and then From YAML. Add the values to the YAML file and it will look like below and 
 add to project also
 
-apiVersion: v1
-kind: Secret
-metadata:
-  name: db-config
-  namespace: library
-type: Opaque
-stringData:
-  POSTGRESQL_SERVICE_HOST: postgresql
-  POSTGRESQL_DATABASE: bookdb
-  POSTGRESQL_PASSWORD: ngbilling
-  POSTGRESQL_SERVICE_PORT: '5432'
-  POSTGRESQL_USER: ngbilling
+ apiVersion: v1
+ kind: Secret
+ metadata:
+   name: db-config
+   namespace: library
+ type: Opaque
+ stringData:
+   POSTGRESQL_SERVICE_HOST: postgresql
+   POSTGRESQL_DATABASE: bookdb
+   POSTGRESQL_PASSWORD: ngbilling
+   POSTGRESQL_SERVICE_PORT: '5432'
+   POSTGRESQL_USER: ngbilling
+   
 <img src="https://github.com/ngecom/openshiftSpringBootPostgres/blob/master/ConfigMap.png">  
 
 # Git pull the code locally
