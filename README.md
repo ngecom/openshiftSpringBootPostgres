@@ -1,6 +1,6 @@
 #  OpenShift SpringBoot REST API Deploy on Postgres(Local Postgres)
 
-Spring Boot developers can easily deploy REST API in Open shift and connect to local Postgres
+Spring Boot developers can easily deploy REST API on Open shift and connect to local Postgres
 
 # Technology or Tools Stack before you start.
   * Java
@@ -8,7 +8,7 @@ Spring Boot developers can easily deploy REST API in Open shift and connect to l
   * Openshift CRC 1.14/1.15
   * Spring Tools 4 for Eclipse
   
-# Spring Boot REST API deploy in OpenShift CRC using odo.
+# Spring Boot REST API deploy on OpenShift CRC using odo.
 
 Scope of the project is to deploy spring boot REST API on Openshift and scale up to mulitple instance connected to your local POSTGRES.
 
@@ -45,11 +45,17 @@ If you want to see the pod credentials then go to Terminal and enter the below c
       POSTGRESQL_USER=demo
       POSTGRESQL_PORT_5432_TCP_PROTO=tcp
 # Execute the Script in Database      
+  Example table book is available in below script. You can create in newly created database.  If your are not familiar how to connect to postgres follow next section
   <href src="https://github.com/ngecom/openshiftSpringBootPostgres/blob/master/sql/createTable.sql">
- 
+
+# How to connect to Postgres manually in Openshift and execute above script.
+  There are multiple ways to create tables. Below is the easiest option you can connect to postgres
+     - Select the Topology on left Menu and select the postgres POD
+     - <img src="https://github.com/ngecom/openshiftSpringBootPostgres/blob/master/ConnectPostgresCreateTable.png">
+
 #  Create Secret in workload section
 
-Administrator tab and go to Config Map section. Click on Create and then From YAML. Add the values to the YAML file and it will look like below and 
+Administrator tab and go to Config Map section. Click on Create From YAML. Add the values to the YAML file and it will look like below and 
 add to project also
 
  apiVersion: v1
@@ -74,9 +80,9 @@ add to project also
     * Verify locally by executing "java -jar bookStore.jar"  connect to your local DB by verify password
     
 # Change the application.properties by give Openshift username and Password 
-  spring.datasource.url=jdbc:postgresql://${POSTGRESQL_SERVICE_HOST:localhost}:${POSTGRESQL_SERVICE_PORT:5432}/${POSTGRESQL_DATABASE:bookdb}
-  spring.datasource.username=${POSTGRESQL_USER:ngbilling}
-  spring.datasource.password=${POSTGRESQL_PASSWORD:ngbilling}
+  * spring.datasource.url=jdbc:postgresql://${POSTGRESQL_SERVICE_HOST:localhost}:${POSTGRESQL_SERVICE_PORT:5432}/${POSTGRESQL_DATABASE:bookdb}
+  * spring.datasource.username=${POSTGRESQL_USER:ngbilling}
+  * spring.datasource.password=${POSTGRESQL_PASSWORD:ngbilling}
   
   ** Execute mvn package again to take latest properties
   
@@ -85,7 +91,7 @@ add to project also
     * rakesh@rakesh-ThinkPad-P50:~/MyWorks/Openshift/helloopenshift$ odo create java bookshop --binary=target/bookStore.jar
     * rakesh@rakesh-ThinkPad-P50:~/MyWorks/Openshift/helloopenshift$ odo push
  
-With an odo create command, a configuration file called config.yaml has been created in the local directory of the component that contains information about the component for deployment. You can view the configuration settings of the component in config.yaml by the following command:
+With an odo create command, a configuration file called config.yaml has been created in the local directory of the component that contains information about the component for deployment. You can view the configuration settings of the component in config.yaml if required.
      
 # Expose the Web application to Public
     * rakesh@rakesh-ThinkPad-P50:~/MyWorks/Openshift/helloopenshift$ odo url create --port 8080
