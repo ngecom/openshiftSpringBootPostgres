@@ -30,23 +30,23 @@ Select PostgreSQL and then Instantiate Template. Enter the database credentials 
 Now the database pod will be created and you can see the pod in Topology. Click on the pod and you can see the status of the pod. Click on the pod name in the Resources tab to see the pod details.
 If you want to see the pod credentials then go to Terminal and enter the below command.
 <img src="https://github.com/ngecom/openshiftSpringBootPostgres/blob/master/VerifyEnvVariables.png">
-  sh-4.2$ env | grep POST
-      POSTGRESQL_PORT_5432_TCP_ADDR=172.30.102.169
-      POSTGRESQL_PORT=tcp://172.30.102.169:5432
-      POSTGRESQL_SERVICE_PORT_POSTGRESQL=5432
-      POSTGRESQL_PORT_5432_TCP=tcp://172.30.102.169:5432
-      POSTGRESQL_SERVICE_HOST=172.30.102.169
-      POSTGRESQL_DATABASE=sampledb
-      POSTGRESQL_PASSWORD=demo
-      POSTGRESQL_PORT_5432_TCP_PORT=5432
-      POSTGRESQL_VERSION=10
-      POSTGRESQL_PREV_VERSION=9.6
-      POSTGRESQL_SERVICE_PORT=5432
-      POSTGRESQL_USER=demo
-      POSTGRESQL_PORT_5432_TCP_PROTO=tcp
+  - sh-4.2$ env | grep POST
+  -   POSTGRESQL_PORT_5432_TCP_ADDR=172.30.102.169
+  -   POSTGRESQL_PORT=tcp://172.30.102.169:5432
+  -   POSTGRESQL_SERVICE_PORT_POSTGRESQL=5432
+  -   POSTGRESQL_PORT_5432_TCP=tcp://172.30.102.169:5432
+  -   POSTGRESQL_SERVICE_HOST=172.30.102.169
+  -   POSTGRESQL_DATABASE=sampledb
+  -   POSTGRESQL_PASSWORD=demo
+  -   POSTGRESQL_PORT_5432_TCP_PORT=5432
+  -   POSTGRESQL_VERSION=10
+  -   POSTGRESQL_PREV_VERSION=9.6
+  -   POSTGRESQL_SERVICE_PORT=5432
+  -   POSTGRESQL_USER=demo
+  -   POSTGRESQL_PORT_5432_TCP_PROTO=tcp
 # Execute the Script in Database      
   Example table book is available in below script. You can create in newly created database.  If your are not familiar how to connect to postgres follow next section
-  <href src="https://github.com/ngecom/openshiftSpringBootPostgres/blob/master/sql/createTable.sql">
+  * href src="https://github.com/ngecom/openshiftSpringBootPostgres/blob/master/sql/createTable.sql"
 
 # How to connect to Postgres manually in Openshift and execute above script.
   There are multiple ways to create tables. Below is the easiest option you can connect to postgres
@@ -58,18 +58,18 @@ If you want to see the pod credentials then go to Terminal and enter the below c
 Administrator tab and go to Config Map section. Click on Create From YAML. Add the values to the YAML file and it will look like below and 
 add to project also
 
- apiVersion: v1
- kind: Secret
- metadata:
-   name: db-config
-   namespace: library
- type: Opaque
- stringData:
-   POSTGRESQL_SERVICE_HOST: postgresql
-   POSTGRESQL_DATABASE: bookdb
-   POSTGRESQL_PASSWORD: ngbilling
-   POSTGRESQL_SERVICE_PORT: '5432'
-   POSTGRESQL_USER: ngbilling
+ - apiVersion: v1
+ - kind: Secret
+ - metadata:
+   - name: db-config
+   - namespace: library
+ - type: Opaque
+ - stringData:
+   - POSTGRESQL_SERVICE_HOST: postgresql
+   - POSTGRESQL_DATABASE: bookdb
+   - POSTGRESQL_PASSWORD: ngbilling
+   - POSTGRESQL_SERVICE_PORT: '5432'
+   - POSTGRESQL_USER: ngbilling
    
 <img src="https://github.com/ngecom/openshiftSpringBootPostgres/blob/master/ConfigMap.png">  
 
